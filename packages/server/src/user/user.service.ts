@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { FindUserDto } from './dto/find-user.dto';
 
 
 @Injectable()
 export class UserService {
 
-  findAll() {
-    return `This action returns all user`;
+  findAll({id}: FindUserDto) {
+    return id;
   }
 }

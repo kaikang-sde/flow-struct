@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
@@ -18,6 +19,7 @@ const user_service_1 = require("./user.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("./entities/user.entity");
+const find_user_dto_1 = require("./dto/find-user.dto");
 let UserController = class UserController {
     userService;
     userRepository;
@@ -25,21 +27,21 @@ let UserController = class UserController {
         this.userService = userService;
         this.userRepository = userRepository;
     }
-    findAll() {
-        return this.userRepository.find();
+    findAll(dto) {
+        return this.userService.findAll(dto);
     }
 };
 exports.UserController = UserController;
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [find_user_dto_1.FindUserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findAll", null);
 exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('user'),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
-    __metadata("design:paramtypes", [user_service_1.UserService,
-        typeorm_2.Repository])
+    __metadata("design:paramtypes", [user_service_1.UserService, typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
 ], UserController);
 //# sourceMappingURL=user.controller.js.map

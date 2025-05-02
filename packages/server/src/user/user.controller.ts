@@ -1,18 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { FindUserDto } from './dto/find-user.dto';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService,
+  constructor(
+    private readonly userService: UserService,
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) { }
 
-  @Get()
-  findAll() {
-    return this.userRepository.find();
+  @Post()
+  findAll(@Body() dto:FindUserDto) {
+    return this.userService.findAll(dto);
   }
 
 }

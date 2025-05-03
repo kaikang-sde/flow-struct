@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { FindUserDto } from './dto/find-user.dto';
+import { GetUserIp, GetUserAgent } from '../utils/GetUserMessTool';
 
 @Controller('user')
 export class UserController {
@@ -13,8 +14,8 @@ export class UserController {
   ) { }
 
   @Post()
-  findAll(@Body() dto:FindUserDto) {
-    return this.userService.findAll(dto);
+  findAll(@GetUserIp() ip: string, @GetUserAgent() agent: string) {
+    return { ip, agent };
   }
 
 }

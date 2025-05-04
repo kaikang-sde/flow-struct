@@ -1,2 +1,3 @@
 node_modules/
 packages/server/config.ts
+dist/

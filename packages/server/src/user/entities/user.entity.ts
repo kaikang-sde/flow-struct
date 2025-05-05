@@ -6,7 +6,7 @@ export class User {
   id: number = 0;
 
   @Column()
-  usernameme: string = '';
+  username: string = '';
 
   @Column()
   head_img: string = '';

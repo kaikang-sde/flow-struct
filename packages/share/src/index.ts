@@ -1,1 +1,1 @@
-export const xd = "xdclass";
+export * from './types';

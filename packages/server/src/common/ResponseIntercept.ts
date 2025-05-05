@@ -14,6 +14,7 @@ export class ResponseIntercept implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         return next.handle().pipe(
             map((data) => {
+                if (data?.msg === 'wechat validation callback') return data.data
                 return {
                     code: 0,
                     data,

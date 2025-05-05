@@ -28,7 +28,7 @@ export class UserService {
    */
   async getCaptcha(key: string, type: string) {
     const svgCaptcha = await this.captchaTool.captche();
-    this.redis.set(`${type}:captcha:${key}`, svgCaptcha.text, 600);
+    this.redis.set(`${type}:captcha:${key}`, svgCaptcha.text, 60);
     return { data: svgCaptcha.data, text: svgCaptcha.text };
   }
 
@@ -70,7 +70,7 @@ export class UserService {
 
     // 获取当前时间拼接验证码
     const randomCodeTime = `${Date.now()}_${randomCode}`
-    this.redis.set(`${type}:code:${phone}`, randomCodeTime, 600)
+    this.redis.set(`${type}:code:${phone}`, randomCodeTime, 60)
 
     // 删除图形验证码
     this.redis.del(`${type}:captcha:${key}`)

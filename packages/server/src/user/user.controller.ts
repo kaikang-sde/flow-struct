@@ -8,8 +8,8 @@ import { GetUserIp, GetUserAgent } from '../utils/GetUserMessTool';
 import { SecretTool } from '../utils/SecretTool';
 import { SendCodeDto } from './dto/sendCode.dto';
 import { RandomTool } from '../utils/RandomTool';
-import { RegisterDto } from './dto/Register.dto';
 import { PasswordLoginDto, SmsLoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
 
 @Controller('user')
 export class UserController {
@@ -66,14 +66,12 @@ export class UserController {
 
   @Post('password_login')
   async passwordLogin(@Body() body: PasswordLoginDto) {
-    const { phone, password } = body;
-    return this.userService.passwordLogin({ phone, password });
+    return this.userService.passwordLogin(body);
   }
 
   @Post('sms_login')
   async smsLogin(@Body() body: SmsLoginDto) {
-    const { phone, sendCode } = body;
-    return this.userService.smsLogin({phone, sendCode});
+    return this.userService.smsLogin(body);
   }
 
 
